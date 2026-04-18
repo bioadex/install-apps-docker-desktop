@@ -1,0 +1,29 @@
+services:
+  jenkins:
+    build: .
+    container_name: jenkins
+    user: jenkins
+    restart: unless-stopped
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    ports:
+      - "8088:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_jenkins_data:/var/jenkins_home             # Persistent volumes
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /home/abbey/files:/data/files:ro
+      - /var/backups:/data/backups:ro
+    networks:
+      - nginx_proxy                          # docker networks
+    environment:
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=true
+
+volumes:
+  jenkins_jenkins_data:
+    external: true
+
+networks:
+  nginx_proxy:
+    external: true
