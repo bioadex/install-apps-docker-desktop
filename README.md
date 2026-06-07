@@ -5,6 +5,7 @@ install docker desktop on your computer, you can download on the internet for wi
 # 
 install apps like nginx, apache2, phpmyadmin, prometheus, jenkins , grafana for monitoring and ubuntu server all using docker-compose file,
 #
+```bash
 docker-compose up -d 
 
 docker-compose down
@@ -26,4 +27,4 @@ docker start (container_id) or (container_name)
 docker stop <container_id> or <container_name>
 
 docker restart <container_id> or <container_name>
-
+```
